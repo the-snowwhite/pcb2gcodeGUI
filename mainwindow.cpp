@@ -102,6 +102,9 @@ MainWindow::MainWindow(QWidget *parent) :
     args[ DRILLARGS ].insert("milldrill-diameter", ui->milldrilldiameterDoubleSpinBox);
     args[ DRILLARGS ].insert("drill-side", ui->drillsideComboBox);
     args[ DRILLARGS ].insert("onedrill", ui->onedrillCheckBox);
+    args[ DRILLARGS ].insert("drillprobe", ui->drillprobeCheckBox);
+    args[ DRILLARGS ].insert("dp-endpoint", ui->dpendpointDoubleSpinBox);
+    args[ DRILLARGS ].insert("dp-feed", ui->dpfeedSpinBox);
     args[ DRILLARGS ].insert("nog81", ui->nog81CheckBox);
     args[ DRILLARGS ].insert("nog91-1", ui->nog911CheckBox);
 
@@ -157,6 +160,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->filloutlineCheckBox, SIGNAL(toggled(bool)), this, SLOT(fillOutlineEnable(bool)));
     connect(ui->optimiseCheckBox, SIGNAL(toggled(bool)), this, SLOT(bridgesAvailable()));
     connect(ui->milldrillCheckBox, SIGNAL(toggled(bool)), ui->milldrilldiameterDoubleSpinBox, SLOT(setEnabled(bool)));
+    connect(ui->drillprobeCheckBox, SIGNAL(toggled(bool)), ui->dpendpointDoubleSpinBox, SLOT(setEnabled(bool)));
+    connect(ui->drillprobeCheckBox, SIGNAL(toggled(bool)), ui->dpfeedSpinBox, SLOT(setEnabled(bool)));
     connect(ui->softwareComboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(updateAlCustomEnableState(QString)));
 
     connect(ui->startPushButton, SIGNAL(clicked()), this, SLOT(startPcb2gcode()));
